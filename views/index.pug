@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  for post in posts
+    a(href ='/posts/' + post.slug)= post.title
+    p
