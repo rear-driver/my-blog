@@ -1,7 +1,7 @@
-extends layout
+extends ../layout
 
 block content
-    form(action="/posts", method="POST")
+    form(action="/posts/create", method="POST")
         label(for="POST-title")= "Title of your post:"
         p
         input(id="POST-title", type="text", name="title")
