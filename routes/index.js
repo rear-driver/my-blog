@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-const posts = require('../posts');
+const express = require('express');
+const router = express.Router();
+const Post = require('../models/post');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res) {
+  var posts = await Post.find({});
   res.render('index', {
     title: 'Best blog platform',
     posts: posts

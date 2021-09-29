@@ -6,8 +6,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/post');
+var newPostRouter = require('./routes/new_post');
 
 var app = express();
+const mongoose = require('mongoose');
+let db_port = '27017';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
+app.use('/create', newPostRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +41,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose.connect('mongodb://localhost:' + db_port + '/blog').then(() => {app.listen(db_port)});
 
 module.exports = app;

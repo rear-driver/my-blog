@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    form(action="/posts", method="POST")
+        label(for="POST-title")= "Title of your post:"
+        p
+        input(id="POST-title", type="text", name="title")
+        p
+        label(for="POST-cotent")= "Write your post, please:"
+        p
+        textarea(name="content", cols="30", rows="10")
+        p
+        input(type="submit", value="Save")
