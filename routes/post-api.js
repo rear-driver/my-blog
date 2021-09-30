@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const router = express.Router();
 const Post = require('../models/post');
 
+
+router.use(cors());
 router.use(express.json());
 
 router.get('/', async function (req, res) {
@@ -18,7 +21,8 @@ router.get('/:slug', async function (req, res) {
   }
 });
 
-router.post('/create', async function (req, res) {
+router.post('/', async function (req, res) {
+  console.log(req.body);
   let title = req.body.title;
   let content = req.body.content;
   let slug = title.replace(/\s+/g, '-').toLowerCase();
