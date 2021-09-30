@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/post');
+var postsApiRouter = require('./routes/post-api');
 
 var app = express();
 const mongoose = require('mongoose');
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
+app.use('/api/posts', postsApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,6 +42,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect('mongodb://localhost:' + db_port + '/blog').then(() => {app.listen(db_port)});
+mongoose.connect('mongodb://localhost:' + db_port + '/blog');
 
 module.exports = app;
